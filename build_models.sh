@@ -12,7 +12,7 @@ build_model() {
         # Generate the STL
         echo "   Starting: " `date`
         "$OPENSCAD" $1 -D MODELNUM=$2 -D DETAIL=$3 -o $4.stl
-        "$OPENSCAD" $1 -D MODELNUM=$2 -D DETAIL=$3 -o $4.png
+        "$OPENSCAD" $1 --imgsize=1024,1024 --render -D MODELNUM=$2 -D DETAIL=$3 -o $4.png
         echo "   Done: " `date`
     else
         echo "   STL file up to date"
