@@ -20,7 +20,7 @@ MODEL_COUNT=4;
 MODEL_NAMES=["ROUND","ROUND_SPACER","SQUARE","SQUARE_SPACER"];
 $fn=DETAIL;
 </pre>
-MODEL_COUNT and MODEL_NAMES are only needed if you have more than one model to render. Set the values of those variables to match the models you will output.
+MODEL_COUNT and MODEL_NAMES are only needed if you have more than one model to render. Set the values of those variables to match the models you will output. NOte that all the model names need to be on one line to be found by the script.
 
 If you have more than one model to render, add code like this at the end to render all the submodels:
 <pre>
