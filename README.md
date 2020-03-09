@@ -6,10 +6,13 @@ This script scans the current directory for .SCAD files and runs the OpenSCAD co
 
 Currently, there are no command line arguments. You can change the following parameters easily enough at the top of the script:
 <pre>
+START_MODEL=1
 DETAIL=120
 OUTPUT_DIR=./STLS
 OPENSCAD="/c/Program Files/Openscad/openscad.exe"
 </pre>
+
+START_MODEL can be used to start generating at a particular model. This is very helpful when you keep adding models and don't want to re-run all the previous ones. Just remember to set it back to 1.
 
 # OpenSCAD Code Changes
 
@@ -20,7 +23,7 @@ MODEL_COUNT=4;
 MODEL_NAMES=["ROUND","ROUND_SPACER","SQUARE","SQUARE_SPACER"];
 $fn=DETAIL;
 </pre>
-MODEL_COUNT and MODEL_NAMES are only needed if you have more than one model to render. Set the values of those variables to match the models you will output. NOte that all the model names need to be on one line to be found by the script.
+MODEL_COUNT and MODEL_NAMES are only needed if you have more than one model to render. Set the values of those variables to match the models you will output. Note that all the model names need to be on one line to be found by the script.
 
 If you have more than one model to render, add code like this at the end to render all the submodels:
 <pre>
