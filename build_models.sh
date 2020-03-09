@@ -1,8 +1,12 @@
 #!/bin/bash
 
+OPENSCAD="/c/Program Files/Openscad/openscad.exe"
+
+# Command line options
+START_MODEL=50
+IGNORE_SCAD_CHANGES=1
 DETAIL=120
 OUTPUT_DIR=./STLS
-OPENSCAD="/c/Program Files/Openscad/openscad.exe"
 
 build_model() {
     echo Building model for $1 to $4
@@ -37,7 +41,7 @@ build_models() {
     fi
 
     # Render each model with either an index or name suffix
-    for (( counter=1; counter<=$model_count; counter++ ))
+    for (( counter=$START_MODEL; counter<=$model_count; counter++ ))
     do
         model_name=`echo $model_names | awk -F, -v ctr="$counter" '{print $ctr}'`
         model_name=`echo $model_name | awk -F\" '{print $2}'`
