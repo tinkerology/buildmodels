@@ -3,7 +3,7 @@
 OPENSCAD="/c/Program Files/Openscad/openscad.exe"
 
 # Command line options
-START_MODEL=50
+START_MODEL=1
 IGNORE_SCAD_CHANGES=1
 DETAIL=120
 OUTPUT_DIR=./STLS
@@ -16,7 +16,8 @@ build_model() {
         # Generate the STL
         echo "   Starting: " `date`
         "$OPENSCAD" $1 -D MODELNUM=$2 -D DETAIL=$3 -o $4.stl
-        "$OPENSCAD" $1 --imgsize=1024,1024 --render -D MODELNUM=$2 -D DETAIL=$3 -o $4.png
+        "$OPENSCAD" $1 --imgsize=1024,1024 --autocenter --viewall --render -D MODELNUM=$2 -D DETAIL=$3 -o $4.png
+        "$OPENSCAD" $1 --imgsize=1024,1024 --autocenter --viewall --render --camera -1000,-1000,-1000,0,0,1000 -D MODELNUM=$2 -D DETAIL=$3 -o $4_cam2.png
         echo "   Done: " `date`
     else
         echo "   STL file up to date"
@@ -64,7 +65,14 @@ if [ ! -d "$OUTPUT_DIR" ]; then
 fi
 
 # Generate models for all the SCAD files in the directory
-for f in *.scad
+file_names=*.scad
+if [ "$1" != "" ];
+then
+    file_names="$1"
+fi
+echo Processing : $file_names
+
+for f in $file_names
 do
     build_models $f
 done
