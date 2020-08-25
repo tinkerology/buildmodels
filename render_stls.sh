@@ -10,8 +10,8 @@ OUTPUT_DIR=./Renders
 # 1: STL file name
 # 2: PNG file base name
 render_model() {
-    echo Building model for $1 to $2
-    # See if the code or detail level has changed
+    echo Rendering model for $1 to $2
+    # See if the STL is newer than the PNG
     if [ "$1" -nt "$2.png" ]
     then
         # Generate the PNG
